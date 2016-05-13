@@ -30,24 +30,31 @@ The Cookie Lifetime is configured here (Magento default): System > Configuration
 You can override the default session lifetime settings of this module by setting the `<max_lifetime>` and `<min_lifetime>` handle if you need to adjust your session lifetime settings.
 Be aware that if the `<max_lifetime>` setting is below your Cookie Lifetime, the `<max_lifetime>`-setting will be taken.
 
-## Installation ##
-
-1. Install module using [modman](https://github.com/colinmollenhour/modman):
-
-        modman clone https://github.com/colinmollenhour/Cm_RedisSession
-
-2. Configure via app/etc/local.xml adding a `global/redis_session` section with the appropriate configuration if needed.
-   See the "Configuration Example" below.
-3. Refresh the config cache to allow the module to be installed by Magento.
-4. Test the configuration by running the migrateSessions.php script in `--test` mode.
-
-        sudo php .modman/Cm_RedisSession/migrateSessions.php --test
-
-5. Change the `global/session_save` configuration to "db" in app/etc/local.xml. The "db" value is the MySQL handler,
-   but Cm_RedisSession overrides it to avoid modifying core files.
-6. Migrate the old sessions to Redis. See the "Migration" section below for details. The migration script will clear
-   the config cache after migration is complete to activate the config change made in step 5.
-
+## INSTALLATION (Magento via composer)
+```
+ "repositories": [
+                                                  {
+                                                    "type": "vcs",
+                                                    "url": "git@github.com:aligent/Cm_RedisSession.git"
+                                                  },
+                                                  {
+                                                    "type": "vcs",
+                                                    "url": "git@github.com:aligent/Cm_Cache_Backend_Redis.git"
+                                                  },
+                                                  {
+                                                    "type": "vcs",
+                                                    "url": "git@github.com:aligent/credis.git"
+                                                  }
+                                                ],
+```
+ * change your `composer.json` to include above repositories.
+ * In `require` section add:
+ ```"require": {        
+        "colinmollenhour/cache-backend-redis": "~3.1.0",
+        "colinmollenhour/redis-session": "~3.1.0"
+      },```
+* run `composer update colinmollenhour/*`
+* commit the generated `composer.lock`
 
 #### Configuration Example ####
 ```xml
