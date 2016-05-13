@@ -32,20 +32,21 @@ Be aware that if the `<max_lifetime>` setting is below your Cookie Lifetime, the
 
 ## INSTALLATION (Magento via composer)
 ```
- "repositories": [
-                                                  {
-                                                    "type": "vcs",
-                                                    "url": "git@github.com:aligent/Cm_RedisSession.git"
-                                                  },
-                                                  {
-                                                    "type": "vcs",
-                                                    "url": "git@github.com:aligent/Cm_Cache_Backend_Redis.git"
-                                                  },
-                                                  {
-                                                    "type": "vcs",
-                                                    "url": "git@github.com:aligent/credis.git"
-                                                  }
-                                                ],
+ "repositories": 
+ [
+      {
+        "type": "vcs",
+        "url": "git@github.com:aligent/Cm_RedisSession.git"
+      },
+      {
+        "type": "vcs",
+        "url": "git@github.com:aligent/Cm_Cache_Backend_Redis.git"
+      },
+      {
+        "type": "vcs",
+        "url": "git@github.com:aligent/credis.git"
+      }
+],
 ```
  * change your `composer.json` to include above repositories.
  * In `require` section add:
